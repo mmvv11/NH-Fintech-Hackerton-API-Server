@@ -12,6 +12,8 @@ const dateFormat = require("dateformat");
  */
 exports.createPinAccount = async function (req, res) {
 
+    const name = req.body.name;
+
     var date = new Date();
     var Tsymd = dateFormat(date, 'yyyymmdd');
     var Trtm = dateFormat(date, 'HHMMss');
@@ -39,7 +41,8 @@ exports.createPinAccount = async function (req, res) {
         json: true
     }
 
+    // NH 핀어카운트 직접 발급 API 요청부
     request(options, function (err, response, body) {
-        return res.json(body);
-    })
+
+    });
 }
