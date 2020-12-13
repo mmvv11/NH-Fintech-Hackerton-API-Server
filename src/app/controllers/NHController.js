@@ -13,8 +13,9 @@ const dateFormat = require("dateformat");
 exports.createPinAccount = async function (req, res) {
 
     var date = new Date();
-    var Tsymd = dateFormat(date, 'yymmdd');
+    var Tsymd = dateFormat(date, 'yyyymmdd');
     var Trtm = dateFormat(date, 'HHMMss');
+    var IsTuno = Tsymd+Trtm;
 
     const options = {
         uri: "https://developers.nonghyup.com/OpenFinAccountDirect.nh",
@@ -27,7 +28,7 @@ exports.createPinAccount = async function (req, res) {
                 "Iscd": secret_config.Iscd,
                 "FintechApsno": "001",
                 "ApiSvcCd": "DrawingTransferA",
-                "IsTuno": "0000",
+                "IsTuno": IsTuno,
                 "AccessToken": secret_config.AccessToken
             },
             'DrtrRgyn': 'Y',
