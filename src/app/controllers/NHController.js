@@ -53,7 +53,7 @@ exports.createPinAccount = async function (req, res) {
     return res.json({
         isSuccess: true,
         code: 200,
-        message: "회원가입 성공"
+        message: "회원가입, 계좌연결 성공"
     });
 }
 
