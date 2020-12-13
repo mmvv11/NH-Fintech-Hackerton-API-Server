@@ -158,12 +158,19 @@ exports.selectBalance = async function (req, res) {
 exports.createInvestment = async function (req, res) {
 
     const {money, balance} = req.body;
+    if(!money || !balance){
+        return res.json({
+            isSuccess: false,
+            code: 400,
+            message: "money, balance를 입력하세요.",
+        })
+    }
 
      // 예치금 < 투자 금액
      if(balance < money){
         return res.json({
             isSuccess: false,
-            code: 400,
+            code: 401,
             message: "투자금은 예치금을 넘을 수 없습니다.",
         })
     }else{
