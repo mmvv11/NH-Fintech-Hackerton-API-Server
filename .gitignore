@@ -1,0 +1,10 @@
+.idea/*
+node_modules/*
+package-lock.json
+log/*
+.DS_Store
+SSREADME.md
+src/web
+src/webAdmin
+config/database.js
+config/secret.js
