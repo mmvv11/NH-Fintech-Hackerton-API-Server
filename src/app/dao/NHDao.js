@@ -50,11 +50,50 @@ async function updateCustomerBalance(params) {
         return false;
     }
 
-    } 
+} 
 
+async function insertInvest(params) {
+
+    try {
+        const connection = await pool.getConnection(async conn => conn);
+        try {
+            const insertQuery = `
+                INSERT INTO Invest(customer_idx, influencer_idx, investment, load_no)
+                VALUES (?, ?, ?, ?);
+            `;
+
+            const updateQuery = `
+                UPDATE Invest
+                SET investment = (?), load_no = (?)
+                WHERE customer_idx = (?) and influencer_idx = (?);
+            `;
+            const rows = await connection.query(
+                updateQuery,
+                params
+            );
+            connection.release();
+            console.log(rows); // 테스트
+            return true;
+            // return res.json(rows);
+
+
+        } catch (err) {
+            logger.error(`example non transaction Query error\n: ${JSON.stringify(err)}`);
+            connection.release();
+            return false;
+        }
+    } catch (err) {
+        logger.error(
+            `example non transaction DB Connection error\n: ${JSON.stringify(err)}`
+        );
+        return false;
+    }
+
+} 
 
 
 module.exports={
     insertPinAccount,
-    updateCustomerBalance
+    updateCustomerBalance,
+    insertInvest
 }
