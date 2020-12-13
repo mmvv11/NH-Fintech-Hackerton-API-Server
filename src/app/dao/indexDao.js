@@ -5,7 +5,7 @@ async function defaultDao() {
   const connection = await pool.getConnection(async (conn) => conn);
   const selectEmailQuery = `
                     SELECT *
-                    FROM test `;
+                    FROM Customer `;
 
   const [rows] = await connection.query(selectEmailQuery)
   connection.release();
